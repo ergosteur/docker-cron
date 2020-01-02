@@ -1,8 +1,11 @@
 FROM ubuntu:latest
 
 # Install cron
-RUN apt-get update
-RUN apt-get install cron
+RUN apt-get update \
+    && apt-get -y install --no-install-recommends cron ffmpeg python3 python3-pip youtube-dl atomicparsley \
+    && pip install --upgrade --no-cache-dir pip youtube-dl
+
+# Configure locale
 
 # Add crontab file in the cron directory
 ADD crontab /etc/cron.d/simple-cron
